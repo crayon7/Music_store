@@ -7,9 +7,10 @@
 		$membername = $_POST['txtMembername'];
 		$role   = $_POST['txtRole'];
 
-		$genre      = $_POST['genre'];
-		$phone      = $_POST['txtPh'];
-		$address    = $_POST['txtAddress'];
+		$genre       = $_POST['genre'];
+		$phone       = substr($_POST['txtPh'],0,3);
+		echo $phone;
+		$address     = $_POST['txtAddress'];
 		$description = $_POST['txtDescription'];
 
 		if(empty($band)){
