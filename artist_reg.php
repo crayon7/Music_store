@@ -4,14 +4,13 @@ require_once('dbconnect.php');
 if(isset($_POST['btnRegister'])){
 
 	$artistname = strip_tags($_POST['txtArtistname']);
-		 $genre = strip_tags($_POST['genre']);
-		  $list = implode(',',$genre);
-				for($i = 0;count($genre)<$i;$i++){ // for each value
-					$list = $genre[$i]; // put insert query and value of selected price
-				}
-		   $phn = $_POST['txtPh'];
+		 
+	$list = implode(",", $_POST['genre']);
 		   //echo strlen($phn);
+    $phn  = $_POST['txtPh'];
 	$phone      = "(".substr($phn,0,2).") ".substr($phn,2,3)."-".substr($phn,5,3)."-".substr($phn,8);	
+	
+
 	$address    = trim($_POST['txtAddress']);
 	$description = trim(mysql_real_escape_string($_POST['txtDescription']));
 	if(empty($artistname)){
@@ -19,11 +18,11 @@ if(isset($_POST['btnRegister'])){
 	}
 	else if(empty($list)){
 		$msg = "Please choose gender";
-	}else if (count($genre)>3) {
-		$msg = "Please Select only 3";
+	}else if(strlen($list)>6){
+		$msg = "U cannot choose more than 3 genres";
 	}else if(empty($phone)){
 		$msg = "Please enter phone number";
-	}else if(strlen($phone)>11){
+	}else if(strlen($phn)>11){
 		$msg = "Wrong phone number digits";
 	}else if(empty($address)){
 		$msg = "Please enter address";
@@ -77,13 +76,13 @@ if(isset($_POST['btnRegister'])){
 
 				<tr>
 					<td>Gender</td>
-					<td><input type="checkbox" name="genre[]" value = "Pop">Pop
-						<input type="checkbox" name="genre[]" value = "Rock">Rock
-						<input type="checkbox" name="genre[]" value = "Dance/Electronic">Dance/Electronic</br>
-						<input type="checkbox" name="genre[]" value = "Soul">Soul
-						<input type="checkbox" name="genre[]" value = "R&B">R&B
-						<input type="checkbox" name="genre[]" value = "Hip Hop">Hip Hop</br>
-						<input type="checkbox" name="genre[]" value = "Other...">Other
+					<td><input type="checkbox" name="genre[]" value = "1">Pop
+						<input type="checkbox" name="genre[]" value = "2">Rock
+						<input type="checkbox" name="genre[]" value = "3">Dance/Electronic</br>
+						<input type="checkbox" name="genre[]" value = "4">Soul
+						<input type="checkbox" name="genre[]" value = "5">R&B
+						<input type="checkbox" name="genre[]" value = "6">Hip Hop</br>
+						<input type="checkbox" name="genre[]" value = "7">Other
 					</td>
 
 				</tr>
